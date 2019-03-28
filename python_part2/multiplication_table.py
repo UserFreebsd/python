@@ -27,3 +27,4 @@ for f in range(a,b+1):
         print("\t",f*g,end="")
     print()
 
+

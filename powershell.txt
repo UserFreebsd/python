@@ -1,0 +1,34 @@
+Start-Process powershell -Verb runAs  # PowerShell: запуск команды в качестве администратора
+
+копирование
+Copy-Item -Path "C:\1\*" -Destination "C:\2" -Recurse
+
+Копирование выполняется при помощи командлета Copy-Item. Следующая команда создает резервную копию C:\boot.bak для файла C:\boot.ini:
+
+Copy-Item -Path c:\boot.ini -Destination c:\boot.bak
+Если целевой файл уже существует, то попытка копирования завершается неудачей. Для того чтобы перезаписать существующий целевой файл, используйте параметр Force:
+
+Copy-Item -Path c:\boot.ini -Destination c:\boot.bak -Force
+Эта команда работает даже если целевой файл помечен как файл только для чтения.
+
+Так же выполняется и копирование папок. Эта команда рекурсивно копирует папку "C:\temp\test1" в новую папку "c:\temp\DeleteMe":
+
+Copy-Item C:\temp\test1 -Recurse c:\temp\DeleteMe
+Можно также скопировать избранные элементы. Следующая команда копирует все файлы .txt, содержащиеся в папке "c:\data", в папку "c:\temp\text":
+
+Copy-Item -Filter *.txt -Path c:\data -Recurse -Destination c:\temp\text
+
+Удалить вложенные элементы можно при помощи командлета Remove-Item, однако он потребует подтверждения удаления, если элемент сам что-нибудь содержит. Например, при попытке удаления папки "C:\temp\DeleteMe", которая содержит другие элементы, Windows PowerShell предварительно предложит подтвердить удаление этой папки:
+
+Remove-Item C:\temp\DeleteMe
+
+Confirm
+The item at C:\temp\DeleteMe has children and the -recurse parameter was not
+specified. If you continue, all children will be removed with the item. Are you
+sure you want to continue?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help
+(default is "Y"):
+Если подтверждение для каждого вложенного элемента нежелательно, задайте параметр Recurse:
+
+Remove-Item C:\temp\DeleteMe -Recurse
+

@@ -32,3 +32,8 @@ sure you want to continue?
 
 Remove-Item C:\temp\DeleteMe -Recurse
 
+Копирование на удалённый компьютер
+Copy-Item C:\Users\ServIvanov\Documents\copy\IPirogova\Videos -Recurse -Force \\SP-N20307-02\c$\Users\Public\profile
+
+Открывает файл на удалённом компьютере
+invoke-item \\SP-N20307-02\c$\Users\Public\profile
